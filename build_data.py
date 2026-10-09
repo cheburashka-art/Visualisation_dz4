@@ -19,7 +19,7 @@ manifest={}
 for f in glob.glob(os.path.join(root,'items','*')):
  base=os.path.basename(f)
  if base.startswith('.') or base.startswith('._'): continue
- m=re.match(r'(\d+)_',base)
+ m=re.match(r'(?:item-)?(\d+)(?:_|\.)',base, re.IGNORECASE)
  if m: manifest.setdefault(m.group(1), 'items/'+base)
 json.dump(manifest,open(os.path.join(root,'images.json'),'w',encoding='utf-8'),ensure_ascii=False,separators=(',',':'))
 print('rows',len(raw),'images',len(manifest))
